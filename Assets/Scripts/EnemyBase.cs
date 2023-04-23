@@ -7,10 +7,19 @@ public class EnemyBase : MonoBehaviour
     public float health = 5;
     public float damage;
     protected bool isDead = false;
+    public ParticleSystem hurtParticle;
 
     public void hit(float incomingDamage)
     {
         health -= incomingDamage;
+        if(incomingDamage > 1)
+        {
+            if(hurtParticle != null)
+            {
+                Instantiate(hurtParticle);
+            }
+
+        }
         if(health <= 0)
         {
             Die();

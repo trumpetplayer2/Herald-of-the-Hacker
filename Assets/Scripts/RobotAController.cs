@@ -69,7 +69,6 @@ public class RobotAController : EnemyBase
     private void OnTriggerEnter(Collider other)
     {
         if (this.isDead) { return; }
-        Debug.Log(other.name);
         if(other.tag == "Player")
         {
             PlayerController player = other.GetComponent<PlayerController>();

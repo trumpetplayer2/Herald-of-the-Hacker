@@ -9,6 +9,7 @@ public class WeaponManager : MonoBehaviour
     public LayerMask layer;
     public float range = 100;
     public float damage = 1;
+    public float bulletForce = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,12 @@ public class WeaponManager : MonoBehaviour
             {
                 EnemyBase enemy = hit.collider.gameObject.GetComponent<EnemyBase>();
                 enemy.hit(damage);
+            }
+            if(hit.collider.tag == "Box")
+            {
+                //Add velocity to box
+                Rigidbody box = hit.collider.GetComponent<Rigidbody>();
+                box.AddForceAtPosition(playerCam.transform.forward * bulletForce, hit.point);
             }
         }
         else

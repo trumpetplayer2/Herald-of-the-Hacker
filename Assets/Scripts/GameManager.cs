@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public AudioClip VictoryJingle;
     private bool isFinished = false;
     public GameObject[] enemyTargets;
+    public float roundTime = 120;
+    private float curTime = 0;
+    public TextMeshProUGUI timer;
 
     private void Start()
     {
@@ -60,7 +63,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetButtonDown("Cancel") && !isFinished)
         {
             togglePause();
@@ -70,12 +72,22 @@ public class GameManager : MonoBehaviour
         /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
              * Below this line is paused when pause script is ran *
          *-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+        curTime += Time.deltaTime;
+        if (curTime >= roundTime)
+        {
+            //If time is up, congrats, you win
+            finishLevel();
+        }
+        //Update text element
+        timer.text = "Time Survived: " + Mathf.FloorToInt(curTime);
     }
 
     public void Death()
     {
         Time.timeScale = 0f;
         isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         DeathMenu.SetActive(true);
     }
 
