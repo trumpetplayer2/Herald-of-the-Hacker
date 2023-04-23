@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public AudioSource Music;
     public AudioClip VictoryJingle;
     private bool isFinished = false;
+    public GameObject[] enemyTargets;
 
     private void Start()
     {
