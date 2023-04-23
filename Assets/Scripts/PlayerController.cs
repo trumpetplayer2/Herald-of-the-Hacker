@@ -48,6 +48,10 @@ public class PlayerController : MonoBehaviour
 
     public void updateMouseLook()
     {
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         float inputX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         float inputY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 

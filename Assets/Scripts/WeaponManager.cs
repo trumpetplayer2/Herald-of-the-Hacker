@@ -18,6 +18,7 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.getIsPaused()) { return; }
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
