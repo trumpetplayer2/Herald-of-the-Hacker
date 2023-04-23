@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
 
     CharacterController controller;
     GameManager manager;
-    // Start is called before the first frame update
+
+    public HealthBar health;
     void Start()
     {
         manager = GameManager.instance;
@@ -84,5 +85,10 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    public void hurt(float dmg)
+    {
+        health.Damage(dmg);
     }
 }

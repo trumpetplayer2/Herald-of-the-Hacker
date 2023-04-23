@@ -65,4 +65,16 @@ public class RobotAController : EnemyBase
         }
         agent.SetDestination(target.position);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (this.isDead) { return; }
+        Debug.Log(other.name);
+        if(other.tag == "Player")
+        {
+            PlayerController player = other.GetComponent<PlayerController>();
+            player.hurt(damage);
+            Die();
+        }
+    }
 }

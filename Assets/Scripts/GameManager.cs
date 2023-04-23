@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] pauseObjects;
     public GameObject[] resumeObjects;
     public GameObject WinMenu;
+    public GameObject DeathMenu;
     private bool isPaused = false;
     public AudioSource Music;
     public AudioClip VictoryJingle;
@@ -69,6 +70,13 @@ public class GameManager : MonoBehaviour
         /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
              * Below this line is paused when pause script is ran *
          *-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+    }
+
+    public void Death()
+    {
+        Time.timeScale = 0f;
+        isPaused = true;
+        DeathMenu.SetActive(true);
     }
 
     public void finishLevel()
