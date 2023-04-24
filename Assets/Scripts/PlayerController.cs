@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public float groundDistance;
     public LayerMask groundMask;
     bool isGrounded;
+    AudioSource sound;
+    public AudioClip jumpSound;
 
     public float gravity = -9.81f;
     Vector3 velocity;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         manager = GameManager.instance;
         controller = this.GetComponent<CharacterController>();
+        sound = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -80,6 +83,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            sound.PlayOneShot(jumpSound);
         }
 
         velocity.y += gravity * Time.deltaTime;

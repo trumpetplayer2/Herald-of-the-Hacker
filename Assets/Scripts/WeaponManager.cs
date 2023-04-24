@@ -12,6 +12,10 @@ public class WeaponManager : MonoBehaviour
     public float bulletForce = 5f;
     public Animator anim;
     public ParticleSystem part;
+    public AudioClip shotSound;
+    public AudioSource soundOrigin;
+    public GameObject boxSfx;
+    public GameObject dmgSfx;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,12 +51,14 @@ public class WeaponManager : MonoBehaviour
                 EnemyBase enemy = hit.collider.gameObject.GetComponent<EnemyBase>();
                 enemy.hit(damage);
                 Instantiate(enemy.hurtParticle, hit.point, Quaternion.identity);
+                Instantiate(dmgSfx, hit.point, Quaternion.identity);
             }
             if(hit.collider.tag == "Box")
             {
                 //Add velocity to box
                 Rigidbody box = hit.collider.GetComponent<Rigidbody>();
                 box.AddForceAtPosition(playerCam.transform.forward * bulletForce, hit.point);
+                Instantiate(boxSfx, hit.point, Quaternion.identity);
             }
         }
         else
@@ -62,5 +68,6 @@ public class WeaponManager : MonoBehaviour
             //shotLine.SetPosition(0, shotLine.transform.localPosition);
             shotLine.SetPosition(1, playerCam.transform.forward * range);
         }
+        soundOrigin.PlayOneShot(shotSound);
     }
 }
