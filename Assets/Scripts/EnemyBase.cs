@@ -8,18 +8,10 @@ public class EnemyBase : MonoBehaviour
     public float damage;
     protected bool isDead = false;
     public ParticleSystem hurtParticle;
-
+    public Animator anim;
     public void hit(float incomingDamage)
     {
         health -= incomingDamage;
-        if(incomingDamage > 1)
-        {
-            if(hurtParticle != null)
-            {
-                Instantiate(hurtParticle);
-            }
-
-        }
         if(health <= 0)
         {
             Die();
@@ -31,8 +23,8 @@ public class EnemyBase : MonoBehaviour
         //Toggle dead
         isDead = true;
         //Animations or effects go here
-
+        anim.SetTrigger("death");
         //Add any timing needed
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 1f);
     }
 }

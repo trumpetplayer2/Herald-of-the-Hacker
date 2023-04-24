@@ -21,17 +21,17 @@ public class RobotAController : EnemyBase
                 {
                     target = tempTarget.transform;
                 }
-                else
-                if (Vector3.Distance(transform.position, tempTarget.transform.position) < Vector3.Distance(transform.position, target.position))
-                {
-                    target = tempTarget.transform;
-                }
+                //else
+                //if (Vector3.Distance(transform.position, tempTarget.transform.position) < Vector3.Distance(transform.position, target.position))
+                //{
+                //    target = tempTarget.transform;
+                //}
             }
         }
-        else
-        {
-            nextCheck = timeBetweenTargetChecks - 1f;
-        }
+        //else
+        //{
+        //    nextCheck = timeBetweenTargetChecks - 1f;
+        //}
         agent.SetDestination(target.position);
     }
     // Update is called once per frame
@@ -42,27 +42,27 @@ public class RobotAController : EnemyBase
             agent.isStopped = true;
             return; 
         }
-        nextCheck += Time.deltaTime;
-        if(timeBetweenTargetChecks <= nextCheck)
-        {
-            //Update target
-            //For now target player, if time later, add a priority list and add boxes on buttons if nearby\
-            foreach (GameObject tempTarget in GameManager.instance.enemyTargets)
-            {
-                if (target == null)
-                {
-                    target = tempTarget.transform;
-                }
-                else
-                if (Vector3.Distance(transform.position, tempTarget.transform.position) < Vector3.Distance(transform.position, target.position))
-                {
-                    target = tempTarget.transform;
-                }
+        //nextCheck += Time.deltaTime;
+        //if(timeBetweenTargetChecks <= nextCheck)
+        //{
+        //    //Update target
+        //    //For now target player, if time later, add a priority list and add boxes on buttons if nearby\
+        //    foreach (GameObject tempTarget in GameManager.instance.enemyTargets)
+        //    {
+        //        if (target == null)
+        //        {
+        //            target = tempTarget.transform;
+        //        }
+        //        else
+        //        if (Vector3.Distance(transform.position, tempTarget.transform.position) < Vector3.Distance(transform.position, target.position))
+        //        {
+        //            target = tempTarget.transform;
+        //        }
                 
-            }
-            //Reset check
-            nextCheck = 0;
-        }
+        //    }
+        //    //Reset check
+        //    nextCheck = 0;
+        //}
         agent.SetDestination(target.position);
     }
 

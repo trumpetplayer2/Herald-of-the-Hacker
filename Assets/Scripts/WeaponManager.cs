@@ -10,10 +10,12 @@ public class WeaponManager : MonoBehaviour
     public float range = 100;
     public float damage = 1;
     public float bulletForce = 5f;
+    public Animator anim;
+    public ParticleSystem part;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -33,7 +35,9 @@ public class WeaponManager : MonoBehaviour
         LineRenderer shotLine = tempBullet.GetComponent<LineRenderer>();
         shotLine.SetPosition(0, transform.position);
 
-
+        part.time = 0;
+        part.Play();
+        anim.SetTrigger("Shoot");
         if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, range, layer))
         {
             
@@ -42,6 +46,7 @@ public class WeaponManager : MonoBehaviour
             {
                 EnemyBase enemy = hit.collider.gameObject.GetComponent<EnemyBase>();
                 enemy.hit(damage);
+                Instantiate(enemy.hurtParticle, hit.point, Quaternion.identity);
             }
             if(hit.collider.tag == "Box")
             {

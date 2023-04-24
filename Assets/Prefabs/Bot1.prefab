@@ -270,7 +270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   damage: 1
-  hurtParticle: {fileID: 0}
+  hurtParticle: {fileID: 667263225846705156, guid: 040f3fe94b82a044aa24e59d073df8b1, type: 3}
+  anim: {fileID: 1009806612969968611}
   timeBetweenTargetChecks: 10
   distanceCheck: 1
 --- !u!136 &1009806612969968612

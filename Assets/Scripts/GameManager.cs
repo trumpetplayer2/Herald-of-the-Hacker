@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
 
     public void switchScenes(string scene)
     {
+        Time.timeScale = 1f;
         if (SceneManager.GetSceneByName(scene) == null) { Debug.LogError("Scene " + scene + "did not exist!"); return; }
         SceneManager.LoadScene(scene);
     }

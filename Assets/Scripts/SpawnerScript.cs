@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnerScript : MonoBehaviour
 {
     bool isBlocked;
-    float nextSpawn;
+    float nextSpawn=2f;
     public float spawnTime = 5;
     public GameObject spawnedObject;
     public Transform spawnLocation;
