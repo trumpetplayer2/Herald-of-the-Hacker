@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject[] pauseObjects;
     public GameObject[] resumeObjects;
+    public GameObject[] levelTwo;
     public GameObject WinMenu;
     public GameObject DeathMenu;
     private bool isPaused = false;
@@ -19,8 +20,10 @@ public class GameManager : MonoBehaviour
     private bool isFinished = false;
     public GameObject[] enemyTargets;
     public float roundTime = 120;
+    public float roundTwoTime = 60f;
     private float curTime = 0;
     public TextMeshProUGUI timer;
+    int round = 1;
 
     private void Start()
     {
@@ -56,7 +59,13 @@ public class GameManager : MonoBehaviour
                 obj.SetActive(true);
             }
         }
-
+        if(levelTwo.Length > 0)
+        {
+            foreach(GameObject obj in levelTwo)
+            {
+                obj.SetActive(false);
+            }
+        }
         WinMenu.SetActive(false);
     }
 
@@ -77,6 +86,14 @@ public class GameManager : MonoBehaviour
         {
             //If time is up, congrats, you win
             finishLevel();
+        }
+        if (curTime >= roundTwoTime && round < 2)
+        {
+            foreach(GameObject obj in levelTwo)
+            {
+                obj.SetActive(true);
+            }
+            round += 1;
         }
         //Update text element
         timer.text = "Time Survived: " + Mathf.FloorToInt(curTime);
